@@ -24,7 +24,7 @@ public class PlayerMovment : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             dir = Vector3.up*strength;
-            Debug.Log("aa");
+           
         }
         if(Input.touchCount>0)
         {
@@ -45,5 +45,17 @@ public class PlayerMovment : MonoBehaviour
     {
         spriteInd = (spriteInd + 1) % sprites.Length;
         GetComponent<SpriteRenderer>().sprite = sprites[spriteInd];
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag=="Scoring")
+        {
+            FindObjectOfType<GameManager>().IncreaseScore();
+        }
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            FindObjectOfType<GameManager>().GameOver();
+        }
+
     }
 }
