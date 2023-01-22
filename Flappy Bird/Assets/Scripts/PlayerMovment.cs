@@ -19,6 +19,13 @@ public class PlayerMovment : MonoBehaviour
         input();
         positionUpdate();
     }
+    private void OnEnable()
+    {
+        Vector3 position = transform.position;
+        position.y = 0;
+        transform.position = position;
+        dir = Vector3.zero;
+    }
     void input()
     {
         if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
